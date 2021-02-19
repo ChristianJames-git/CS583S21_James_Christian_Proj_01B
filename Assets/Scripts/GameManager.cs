@@ -15,4 +15,10 @@ public class GameManager : MonoBehaviour
     {
         
     }
+
+    public void onExitClicked()
+    {
+        // Add to onClick() for button. Choose this function
+        Debug.Log("On Exit Button Click");
+    }
 }
