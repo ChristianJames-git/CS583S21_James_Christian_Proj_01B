@@ -2,41 +2,19 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
+    public PlayerStats playerStats;
+    public bool rolledCharacter = false;
+    public static GameManager Instance { get; private set; }
 
-    bool rolledCharacter = false;
-    // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
-        Debug.Log("GameManager - In start function.");
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
-    public void onPlayClicked()
-    {
-        if (rolledCharacter)
-            Debug.Log("On Play Button Click");
-        else
-            Debug.Log("Roll Character First");
-    }
-
-    public void onRollCharacterClicked()
-    {
-        Debug.Log("On Roll Character Button Click");
-        SceneManager.LoadScene("RollCharacterScene");
-        rolledCharacter = true;
-    }
-    
-    public void onQuitClicked()
-    {
-        // Add to onClick() for button. Choose this function
-        Debug.Log("On Quit Button Click");
+        if (Instance == null) { Instance = this; DontDestroyOnLoad(gameObject); }
+        else { Destroy(gameObject); }
+        // Cache references to all desired variables
+        playerStats = FindObjectOfType<PlayerStats>();
     }
 }

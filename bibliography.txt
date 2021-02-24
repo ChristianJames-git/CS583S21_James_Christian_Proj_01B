@@ -1,1 +1,2 @@
 Character Sheet pdf - https://dnd.wizards.com/charactersheets
+Debug.Log(Dropdown.options[Dropdown.value].text); - https://answers.unity.com/questions/1167834/how-do-you-access-the-text-value-of-the-dropdown-u.html
