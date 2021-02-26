@@ -8,7 +8,7 @@ public class PlayerStats : MonoBehaviour
     //will change these to private after testing
     public string playerName;
     public int[] abilityScores = new int[6]; //Strength Dexterity Constitution Intelligence Wisdom Charisma
-    public string race;
+    public string playerRace;
     public string playerClass;
     public string alignment;
     public int currentXP;
@@ -29,11 +29,5 @@ public class PlayerStats : MonoBehaviour
     {
         playerClass = newClass;
         Debug.Log("Changed Character Class to: " + playerClass);
-    }
-
-    public void setRace(string newRace)
-    {
-        race = newRace;
-        Debug.Log("Changed Character Class to: " + race);
     }
 }
