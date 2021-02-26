@@ -30,4 +30,10 @@ public class PlayerStats : MonoBehaviour
         playerClass = newClass;
         Debug.Log("Changed Character Class to: " + playerClass);
     }
+
+    public void setRace(string newRace)
+    {
+        race = newRace;
+        Debug.Log("Changed Character Class to: " + race);
+    }
 }

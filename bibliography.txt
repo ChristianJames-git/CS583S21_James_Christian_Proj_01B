@@ -1,2 +1,3 @@
 Character Sheet pdf - https://dnd.wizards.com/charactersheets
 Debug.Log(Dropdown.options[Dropdown.value].text); - https://answers.unity.com/questions/1167834/how-do-you-access-the-text-value-of-the-dropdown-u.html
+Loosely based singleton on - https://gamedev.stackexchange.com/questions/116009/in-unity-how-do-i-correctly-implement-the-singleton-pattern

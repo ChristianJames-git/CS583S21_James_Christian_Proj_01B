@@ -180,6 +180,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerName: 
+  abilityScores: 000000000000000000000000000000000000000000000000
+  race: 
+  playerClass: 
+  alignment: 
+  currentXP: 0
+  maxXP: 0
+  currentHP: 0
+  maxHP: 0
+  armorClass: 0
+  playerSpeeds:
+  - 0
+  - 0
+  - 0
+  itemList: []
 --- !u!1 &453737621
 GameObject:
   m_ObjectHideFlags: 0

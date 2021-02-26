@@ -29,8 +29,9 @@ public class MainSceneManager : MonoBehaviour
     {
         // Add to onClick() for button. Choose this function
         Debug.Log("On Quit Button Click");
-        Debug.Log(GameManager.Instance.playerStats.playerName);
-        Debug.Log(GameManager.Instance.playerStats.playerClass);
+        Debug.Log("Name: " + GameManager.Instance.playerStats.playerName);
+        Debug.Log("Class: " + GameManager.Instance.playerStats.playerClass);
+        Debug.Log("Race: " + GameManager.Instance.playerStats.race);
         UnityEditor.EditorApplication.isPlaying = false;
     }
 }

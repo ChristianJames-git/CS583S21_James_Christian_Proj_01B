@@ -3,14 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
-public class ClassesDropdown : MonoBehaviour
+public class RacesDropdown : MonoBehaviour
 {
     public TMP_Dropdown dropdownClasses;
     public void Start()
     {
         dropdownClasses.onValueChanged.AddListener(delegate
         {
-            GameManager.Instance.playerStats.setClass(dropdownClasses.options[dropdownClasses.value].text);
+            GameManager.Instance.playerStats.setRace(dropdownClasses.options[dropdownClasses.value].text);
         });
     }
 }
