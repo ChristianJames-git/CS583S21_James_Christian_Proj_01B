@@ -119,8 +119,13 @@ public class CharacterSceneManager : MonoBehaviour
         if (classNum != 0)
         {
             classNum--;
-            classDescription.text = GameManager.Instance.classList[classNum].classSummary + "\nMain Stat: " + GameManager.Instance.classList[classNum].classMainStats;
+            classDescription.text = GameManager.Instance.classList[classNum].classSummary + "\nMain Stat: " + GameManager.Instance.classList[classNum].classMainStats + "\nHit Die: d" + GameManager.Instance.classList[classNum].hitDie;
             GameManager.Instance.playerStats.playerClass = GameManager.Instance.classList[classNum].className;
+            int Con = GameManager.Instance.playerStats.abilityScores[1];
+            if (Con > 9) { Con = (Con - 10) / 2; } 
+            else { Con = (Con - 11) * -1 / 2 * -1; }
+            GameManager.Instance.playerStats.maxHP = GameManager.Instance.classList[classNum].hitDie + Con;
+            GameManager.Instance.playerStats.currentHP = GameManager.Instance.playerStats.maxHP;
             panelComplete = true;
         }
         else 

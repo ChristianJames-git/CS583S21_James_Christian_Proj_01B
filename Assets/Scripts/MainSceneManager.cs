@@ -14,7 +14,10 @@ public class MainSceneManager : MonoBehaviour
     public void onPlayClicked()
     {
         if (GameManager.Instance.rolledCharacter)
+        {
             Debug.Log("On Play Button Click");
+            SceneManager.LoadScene("PlayScene");
+        }
         else
             Debug.Log("Roll Character First");
     }
