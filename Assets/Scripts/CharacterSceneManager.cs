@@ -12,11 +12,13 @@ public class CharacterSceneManager : MonoBehaviour
     public GameObject racesPanel;
     public GameObject classesPanel;
     public GameObject alignmentPanel;
+    public GameObject jsonPanel;
     private int currentPanel;
     private bool panelComplete;
     public TMP_Text abilityScoreTxt;
     public TMP_Text raceDescription;
     public TMP_Text classDescription;
+    public TMP_InputField outputJSON;
     public void Start()
     {
         inputPanels.Add(characterNamePanel);
@@ -24,6 +26,7 @@ public class CharacterSceneManager : MonoBehaviour
         inputPanels.Add(racesPanel);
         inputPanels.Add(classesPanel);
         inputPanels.Add(alignmentPanel);
+        inputPanels.Add(jsonPanel);
         ResetPanels();
         OpenPanel(0);
     }
@@ -38,19 +41,20 @@ public class CharacterSceneManager : MonoBehaviour
 
     public void OpenPanel(int index)
     {
-        if (index < inputPanels.Count)
+        if (index == -1)
+        {
+            Debug.Log("Return to Main Menu");
+            GameManager.Instance.rolledCharacter = true;
+            SceneManager.LoadScene("MainScene");
+        }
+        else
         {
             if (index > 0)
                 inputPanels[index - 1].SetActive(false);
             inputPanels[index].SetActive(true);
             panelComplete = false;
             currentPanel = index;
-        }
-        else
-        {
-            Debug.Log("Return to Main Menu");
-            GameManager.Instance.rolledCharacter = true;
-            SceneManager.LoadScene("MainScene");
+            outputJSON.text = JsonUtility.ToJson(GameManager.Instance.playerStats, true);
         }
     }
 
@@ -103,8 +107,9 @@ public class CharacterSceneManager : MonoBehaviour
         if (raceNum != 0)
         {
             raceNum--;
-            raceDescription.text = GameManager.Instance.raceList[raceNum].raceSummary + "\nWalking Speed: " + GameManager.Instance.raceList[raceNum].raceSpeeds[0] + "ft\nRunning Speed: " + GameManager.Instance.raceList[raceNum].raceSpeeds[1] + "ft\nJump Height: " + GameManager.Instance.raceList[raceNum].raceSpeeds[0] + "ft";
+            raceDescription.text = GameManager.Instance.raceList[raceNum].raceSummary + "\nWalking Speed: " + GameManager.Instance.raceList[raceNum].raceSpeeds[0] + "ft\nRunning Speed: " + GameManager.Instance.raceList[raceNum].raceSpeeds[1] + "ft\nJump Height: " + GameManager.Instance.raceList[raceNum].raceSpeeds[2] + "ft";
             GameManager.Instance.playerStats.playerRace = GameManager.Instance.raceList[raceNum].raceName;
+            GameManager.Instance.playerStats.playerSpeeds = GameManager.Instance.raceList[raceNum].raceSpeeds;
             panelComplete = true;
         }
         else
@@ -121,10 +126,7 @@ public class CharacterSceneManager : MonoBehaviour
             classNum--;
             classDescription.text = GameManager.Instance.classList[classNum].classSummary + "\nMain Stat: " + GameManager.Instance.classList[classNum].classMainStats + "\nHit Die: d" + GameManager.Instance.classList[classNum].hitDie;
             GameManager.Instance.playerStats.playerClass = GameManager.Instance.classList[classNum].className;
-            int Con = GameManager.Instance.playerStats.abilityScores[1];
-            if (Con > 9) { Con = (Con - 10) / 2; } 
-            else { Con = (Con - 11) * -1 / 2 * -1; }
-            GameManager.Instance.playerStats.maxHP = GameManager.Instance.classList[classNum].hitDie + Con;
+            GameManager.Instance.playerStats.maxHP = GameManager.Instance.classList[classNum].hitDie + 2; //since assuming all modifiers to be +2
             GameManager.Instance.playerStats.currentHP = GameManager.Instance.playerStats.maxHP;
             panelComplete = true;
         }

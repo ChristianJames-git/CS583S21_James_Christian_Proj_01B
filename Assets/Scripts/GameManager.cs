@@ -24,12 +24,12 @@ public class GameManager : MonoBehaviour
     {
         //change race speeds
         raceList.Add(new Race() { raceName = "Dragonborn", raceSummary = "Your draconic heritage manifests in a variety of traits you share with other dragonborn.", raceSpeeds = new List<float>() { 30, 60, 5 } });
-        raceList.Add(new Race() { raceName = "Dwarf", raceSummary = "Your dwarf character has an assortment of in abilities, part and parcel of dwarven nature.", raceSpeeds = new List<float>() { 30, 60, 5 } });
+        raceList.Add(new Race() { raceName = "Dwarf", raceSummary = "Your dwarf character has an assortment of in abilities, part and parcel of dwarven nature.", raceSpeeds = new List<float>() { 25, 50, 5 } });
         raceList.Add(new Race() { raceName = "Elf", raceSummary = "Your elf character has a variety of natural abilities, the result of thousands of years of elven refinement.", raceSpeeds = new List<float>() { 30, 60, 5 } });
-        raceList.Add(new Race() { raceName = "Gnome", raceSummary = "Your gnome character has certain characteristics in common with all other gnomes.", raceSpeeds = new List<float>() { 30, 60, 5 } });
+        raceList.Add(new Race() { raceName = "Gnome", raceSummary = "Your gnome character has certain characteristics in common with all other gnomes.", raceSpeeds = new List<float>() { 25, 50, 5 } });
         raceList.Add(new Race() { raceName = "Half-Elf", raceSummary = "Your half-elf character has some qualities in common with elves and some that are unique to half-elves.", raceSpeeds = new List<float>() { 30, 60, 5 } });
         raceList.Add(new Race() { raceName = "Half-Orc", raceSummary = "Your half - orc character has certain traits deriving from your orc ancestry.", raceSpeeds = new List<float>() { 30, 60, 5 } });
-        raceList.Add(new Race() { raceName = "Halfling", raceSummary = "Your halfling character has a number of traits in common with all other halflings.", raceSpeeds = new List<float>() { 30, 60, 5 } });
+        raceList.Add(new Race() { raceName = "Halfling", raceSummary = "Your halfling character has a number of traits in common with all other halflings.", raceSpeeds = new List<float>() { 25, 50, 5 } });
         raceList.Add(new Race() { raceName = "Human", raceSummary = "It's hard to make generalizations about humans, but your human character has these traits.", raceSpeeds = new List<float>() { 30, 60, 5 } });
         raceList.Add(new Race() { raceName = "Tiefling", raceSummary = "Tieflings share certain racial traits as a result of their infernal descent.", raceSpeeds = new List<float>() { 30, 60, 5 } });
         classList.Add(new Class() { className = "Barbarian", classSummary = "In battle, you fight with primal ferocity. For some barbarians, rage is a means to an end–that end being violence.", classMainStats = "Strenth", hitDie = 12 });
