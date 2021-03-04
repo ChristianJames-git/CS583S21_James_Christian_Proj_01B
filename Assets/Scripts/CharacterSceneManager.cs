@@ -71,13 +71,17 @@ public class CharacterSceneManager : MonoBehaviour
 
     public void changeName(string newName)
     {
+        Debug.Log("Name: " + newName);
         if (newName != "")
         {
             GameManager.Instance.playerStats.changeName(newName);
             panelComplete = true;
         }
         else
+        {
             Debug.Log("Name cannot be blank");
+            panelComplete = false;
+        }
     }
 
     public void rollAbilityScores()
@@ -182,8 +186,6 @@ public class CharacterSceneManager : MonoBehaviour
             panelComplete = true;
         }
         else
-        {
             panelComplete = false;
-        }
     }
 }

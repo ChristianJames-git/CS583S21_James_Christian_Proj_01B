@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using TMPro;
 
 public class GameManager : MonoBehaviour
 {
@@ -10,6 +11,7 @@ public class GameManager : MonoBehaviour
     public List<Race> raceList = new List<Race>();
     public List<Class> classList = new List<Class>();
     public bool rolledCharacter = false;
+
     public static GameManager Instance { get; private set; }
 
     void Awake()
