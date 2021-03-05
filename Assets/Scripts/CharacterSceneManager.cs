@@ -6,21 +6,18 @@ using TMPro;
 
 public class CharacterSceneManager : MonoBehaviour
 {
+    private GameManager gm;
+    private PlayerStats ps;
     public List<GameObject> inputPanels;
-    public GameObject characterNamePanel;
-    public GameObject abilitiesPanel;
-    public GameObject racesPanel;
-    public GameObject classesPanel;
-    public GameObject alignmentPanel;
-    public GameObject jsonPanel;
+    public GameObject characterNamePanel, abilitiesPanel, racesPanel, classesPanel, alignmentPanel, jsonPanel;
     private int currentPanel;
     private bool panelComplete;
-    public TMP_Text abilityScoreTxt;
-    public TMP_Text raceDescription;
-    public TMP_Text classDescription;
+    public TMP_Text abilityScoreTxt, raceDescription, classDescription;
     public TMP_InputField outputJSON;
     public void Start()
     {
+        gm = GameManager.Instance;
+        ps = gm.playerStats;
         inputPanels.Add(characterNamePanel);
         inputPanels.Add(abilitiesPanel);
         inputPanels.Add(racesPanel);
@@ -44,7 +41,7 @@ public class CharacterSceneManager : MonoBehaviour
         if (index == -1)
         {
             Debug.Log("Return to Main Menu");
-            GameManager.Instance.rolledCharacter = true;
+            gm.rolledCharacter = true;
             SceneManager.LoadScene("MainScene");
         }
         else
@@ -54,7 +51,7 @@ public class CharacterSceneManager : MonoBehaviour
             inputPanels[index].SetActive(true);
             panelComplete = false;
             currentPanel = index;
-            outputJSON.text = JsonUtility.ToJson(GameManager.Instance.playerStats, true);
+            outputJSON.text = JsonUtility.ToJson(gm.playerStats, true);
         }
     }
 
@@ -74,7 +71,7 @@ public class CharacterSceneManager : MonoBehaviour
         Debug.Log("Name: " + newName);
         if (newName != "")
         {
-            GameManager.Instance.playerStats.changeName(newName);
+            ps.changeName(newName);
             panelComplete = true;
         }
         else
@@ -96,7 +93,7 @@ public class CharacterSceneManager : MonoBehaviour
                     rolls.Add(Random.Range(1, 5));
                 rolls.Sort();
                 abilityScore = rolls[4] + rolls[5] + rolls[6];
-                GameManager.Instance.playerStats.abilityScores[i] = abilityScore;
+                ps.abilityScores[i] = abilityScore;
                 abilityScoreTxt.text += " " + abilityScore;
                 rolls.Clear();
             }
@@ -111,9 +108,9 @@ public class CharacterSceneManager : MonoBehaviour
         if (raceNum != 0)
         {
             raceNum--;
-            raceDescription.text = GameManager.Instance.raceList[raceNum].raceSummary + "\nWalking Speed: " + GameManager.Instance.raceList[raceNum].raceSpeeds[0] + "ft\nRunning Speed: " + GameManager.Instance.raceList[raceNum].raceSpeeds[1] + "ft\nJump Height: " + GameManager.Instance.raceList[raceNum].raceSpeeds[2] + "ft";
-            GameManager.Instance.playerStats.playerRace = GameManager.Instance.raceList[raceNum].raceName;
-            GameManager.Instance.playerStats.playerSpeeds = GameManager.Instance.raceList[raceNum].raceSpeeds;
+            raceDescription.text = gm.raceList[raceNum].raceSummary + "\nWalking Speed: " + gm.raceList[raceNum].raceSpeeds[0] + "ft\nRunning Speed: " + gm.raceList[raceNum].raceSpeeds[1] + "ft\nJump Height: " + gm.raceList[raceNum].raceSpeeds[2] + "ft";
+            ps.playerRace = gm.raceList[raceNum].raceName;
+            ps.playerSpeeds = gm.raceList[raceNum].raceSpeeds;
             panelComplete = true;
         }
         else
@@ -128,10 +125,10 @@ public class CharacterSceneManager : MonoBehaviour
         if (classNum != 0)
         {
             classNum--;
-            classDescription.text = GameManager.Instance.classList[classNum].classSummary + "\nMain Stat: " + GameManager.Instance.classList[classNum].classMainStats + "\nHit Die: d" + GameManager.Instance.classList[classNum].hitDie;
-            GameManager.Instance.playerStats.playerClass = GameManager.Instance.classList[classNum].className;
-            GameManager.Instance.playerStats.maxHP = GameManager.Instance.classList[classNum].hitDie + 2; //since assuming all modifiers to be +2
-            GameManager.Instance.playerStats.currentHP = GameManager.Instance.playerStats.maxHP;
+            classDescription.text = gm.classList[classNum].classSummary + "\nMain Stat: " + gm.classList[classNum].classMainStats + "\nHit Die: d" + gm.classList[classNum].hitDie;
+            ps.playerClass = gm.classList[classNum].className;
+            ps.maxHP = gm.classList[classNum].hitDie + 2; //since assuming all modifiers to be +2
+            ps.currentHP = ps.maxHP;
             panelComplete = true;
         }
         else 
@@ -182,7 +179,7 @@ public class CharacterSceneManager : MonoBehaviour
                     newAlignment += "Evil";
                     break;
             }
-            GameManager.Instance.playerStats.alignment = newAlignment;
+            ps.alignment = newAlignment;
             panelComplete = true;
         }
         else
