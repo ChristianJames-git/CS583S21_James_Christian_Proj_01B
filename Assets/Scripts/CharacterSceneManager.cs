@@ -38,32 +38,25 @@ public class CharacterSceneManager : MonoBehaviour
 
     public void OpenPanel(int index)
     {
-        if (index == -1)
-        {
-            Debug.Log("Return to Main Menu");
-            gm.rolledCharacter = true;
-            SceneManager.LoadScene("MainScene");
-        }
-        else
-        {
-            if (index > 0)
-                inputPanels[index - 1].SetActive(false);
-            inputPanels[index].SetActive(true);
-            panelComplete = false;
-            currentPanel = index;
-            outputJSON.text = JsonUtility.ToJson(gm.playerStats, true);
-        }
+        if (index > 0)
+            inputPanels[index - 1].SetActive(false);
+        inputPanels[index].SetActive(true);
+        panelComplete = false;
+        currentPanel = index;
+        outputJSON.text = JsonUtility.ToJson(gm.playerStats, true);
     }
 
     public void submitPanel()
     {
+        if (currentPanel + 1 == inputPanels.Count)
+        {
+            gm.rolledCharacter = true;
+            SceneManager.LoadScene("MainScene");
+        }
         if (panelComplete)
         {
-            Debug.Log("Panel Complete");
             OpenPanel(++currentPanel);
         }
-        else
-            Debug.Log("Finish before submitting");
     }
 
     public void changeName(string newName)
