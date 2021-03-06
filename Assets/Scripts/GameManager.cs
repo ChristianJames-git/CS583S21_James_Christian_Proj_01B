@@ -1,9 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
-using UnityEngine.UI;
-using TMPro;
 
 public class GameManager : MonoBehaviour
 {
@@ -19,11 +16,12 @@ public class GameManager : MonoBehaviour
         if (Instance == null) { Instance = this; DontDestroyOnLoad(gameObject); }
         else { Destroy(gameObject); }
         // Cache references to all desired variables
-        playerStats = FindObjectOfType<PlayerStats>();
+        //playerStats = FindObjectOfType<PlayerStats>();
     }
 
     private void Start()
     {
+        playerStats = new PlayerStats();
         //change race speeds
         raceList.Add(new Race() { raceName = "Dragonborn", raceSummary = "Your draconic heritage manifests in a variety of traits you share with other dragonborn.", raceSpeeds = new List<float>() { 30, 60, 5 } });
         raceList.Add(new Race() { raceName = "Dwarf", raceSummary = "Your dwarf character has an assortment of in abilities, part and parcel of dwarven nature.", raceSpeeds = new List<float>() { 25, 50, 5 } });
@@ -52,6 +50,21 @@ public class GameManager : MonoBehaviour
     }
 }
 
+public class PlayerStats
+{
+    public string playerName;
+    public int[] abilityScores = new int[6]; //Strength Dexterity Constitution Intelligence Wisdom Charisma
+    public string playerRace;
+    public string playerClass;
+    public string alignment;
+    public int currentXP;
+    public int maxXP;
+    public int currentHP;
+    public int maxHP;
+    public int armorClass;
+    public List<float> playerSpeeds; //Walking Running JumpHeight
+    public List<string> itemList = new List<string>();
+}
 public class Race
 {
     public string raceName { get; set; }

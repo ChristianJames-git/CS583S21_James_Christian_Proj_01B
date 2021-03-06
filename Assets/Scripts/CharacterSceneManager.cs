@@ -71,7 +71,7 @@ public class CharacterSceneManager : MonoBehaviour
         Debug.Log("Name: " + newName);
         if (newName != "")
         {
-            ps.changeName(newName);
+            ps.playerName = newName;
             panelComplete = true;
         }
         else
